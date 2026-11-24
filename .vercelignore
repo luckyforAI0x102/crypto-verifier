@@ -1,0 +1,6 @@
+node_modules/
+dist/
+design/
+informations.json
+informations.json.*.tmp
+.env*

@@ -13,6 +13,14 @@ npm start
 
 Open [the local site](http://127.0.0.1:3000). The workspace already contains a built copy, which can also be launched with `node server.mjs`. After editing the React source, run `node build.mjs` and refresh the page.
 
+## Deploy to Vercel
+
+1. Import this repository into Vercel and select the repository root. The included `vercel.json` sets the build command and output directory. Include the files in `src/client/assets/` when you commit the project.
+2. In the project's **Storage** tab, create or connect a **private Blob** store for the environments where reviews should be saved. Use the default environment variable names. [Vercel private storage](https://vercel.com/docs/vercel-blob/private-storage)
+3. Deploy or redeploy after connecting the store. Complete a sample review and select **Save review**. The first save creates `informations.json` in the connected store. You can inspect the file from the Storage dashboard.
+
+Vercel serves the React build from `dist/` and runs Express at `/api/submissions`. The hosted preview labels each page as an independent practice demo. Only predefined sample choices and numbered demo tiles can be saved. A new store starts empty. Local development continues to use the project’s own `informations.json`.
+
 ## Project structure
 
 The client and server share one private npm package and one dependency lockfile.
@@ -33,7 +41,7 @@ Enter case **980250** in Design preview. On screens 7–9, type or paste the dis
 
 On screen 14 select **Save review** to save the completed review with one click. Expand **Edit and resubmit** if you want to change a choice first.
 
-## Saved information
+## Local saved information
 
 Express appends each completed review to `informations.json` in the project root. When you select **Save review**, the `phrase` field stores the 12 or 24 selected demo tile labels in display order, separated by spaces. The record also contains the sample case ID, selected sample email, activity decisions, balance range, contact response, device, layout size, submission ID, and save time. An unfinished review stays in the browser tab.
 

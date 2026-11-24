@@ -153,11 +153,7 @@ select { display: block; width: 100%; color: #d2ddec; background-color: var(--in
 .device-logo-reference { width: min(100%, 286px); margin: 0; }
 .device-logo-art {
   display: block; aspect-ratio: 286 / 56;
-  /* Show the 286 × 56 logo sample at (85, 115) in the 1170 × 822 reference. */
-  background-image: url("/references/10.jpg");
-  background-size: calc(100% * 1170 / 286) auto;
-  background-position: calc(100% * 85 / (1170 - 286)) calc(100% * 115 / (822 - 56));
-  background-repeat: no-repeat;
+  background: url("/assets/device-logos.png") center / contain no-repeat;
   margin-bottom: 30px;
 }
 .device-logo-reference figcaption { margin-top: 6px; font-size: .8125rem; line-height: 16px; color: #c5bcd9; }
@@ -190,9 +186,9 @@ select { display: block; width: 100%; color: #d2ddec; background-color: var(--in
 }
 .platform-store::before {
   content: ""; position: absolute; top: 50%; left: 18px; transform: translateY(-50%);
-  width: 28px; height: 30px; background: url("/references/10.jpg") -236px -620px / 1170px 822px no-repeat;
+  width: 28px; height: 30px; background: url("/assets/ios-store.png") center / contain no-repeat;
 }
-.android-store::before { background-position: -718px -620px; }
+.android-store::before { background-image: url("/assets/android-store.png"); }
 .platform-store small { color: #c5b9df; font-size: .6875rem; letter-spacing: .025em; }
 .device-actions, .card-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px; }
 .device-actions { display: grid; grid-template-columns: minmax(155px, 220px) 1fr; align-items: start; margin-top: 17px; }
@@ -243,12 +239,8 @@ select { display: block; width: 100%; color: #d2ddec; background-color: var(--in
   margin: 0; padding-bottom: 15px; border-bottom: 1px solid #30263e;
 }
 .vault-logo-art {
-  /* The 300 × 44 logo sample starts at (97, 44) in the 904 × 693 reference. */
   display: block; width: min(100%, 300px); aspect-ratio: 300 / 44;
-  background-image: url("/references/12.jpg");
-  background-size: calc(100% * 904 / 300) auto;
-  background-position: calc(100% * 97 / (904 - 300)) calc(100% * 44 / (693 - 44));
-  background-repeat: no-repeat;
+  background: url("/assets/vault-logos.png") center / contain no-repeat;
   margin-bottom: 30px;
 }
 .vault-logo-reference figcaption { color: #c5bcd9; font-size: .8125rem; line-height: 16px; }
@@ -330,7 +322,7 @@ select { display: block; width: 100%; color: #d2ddec; background-color: var(--in
      The mask keeps the device illustration and leaves the HTML text area clear. */
   .practice-devices .device-hero { min-height: 430px; }
   .practice-devices .device-hero::before {
-    inset: 0; background: url("/references/10.jpg") -39px -22px / 1170px 822px no-repeat;
+    inset: 0; background: url("/assets/device-hero.png") left top no-repeat;
     mask-image: linear-gradient(to right, transparent 42%, #000 47%), linear-gradient(to bottom, transparent 78%, #000 84%);
   }
 }

@@ -92,6 +92,7 @@ export default function DesignPreview() {
       break;
   }
   return <div className={'shell design-preview' + (id === 'devices' || id === 'word-card' ? ' wallet' : '') + (id === 'letter' ? ' paper' : '')}>
+    {process.env.HOSTED_PREVIEW && <aside className="practice-notice"><b>Independent practice demo</b> · Use the sample details shown on each page.</aside>}
     <main className="preview-stage" data-screen={id} ref={stage} tabIndex="-1">{page}</main>
     {id === 'email' && <footer className="shell-footer"><span>Case <b>#{caseId}</b>　Associate <b>Nathan Phillips</b></span><a className="link" href="#case">Leave</a></footer>}
   </div>;

@@ -28,7 +28,7 @@ export function createApp({ publicDir, saveSubmission }) {
     if (status === 409) return res.status(409).json({ error: 'This submission ID already belongs to another review.' });
     res.status(status).json({ saved: true, id: req.body.id });
   });
-  app.use(express.static(publicDir));
+  if (publicDir) app.use(express.static(publicDir));
   app.use((error, req, res, next) => {
     if (res.headersSent) return next(error);
     if (error.status === 400 || error.status === 413) {

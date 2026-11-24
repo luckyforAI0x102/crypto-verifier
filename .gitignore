@@ -3,3 +3,6 @@ dist/
 informations.json.*.tmp
 design/
 informations.json
+.vercel/
+.env.local
+.env.*.local

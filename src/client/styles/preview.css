@@ -1,4 +1,8 @@
 .preview-stage { min-width: 0; }
+.practice-notice {
+  padding: 8px 16px; background: #eaf1ff; color: #182b47;
+  text-align: center; font: .875rem/1.4 "Segoe UI", Arial, sans-serif;
+}
 .preview-stage[data-screen="layout"], .preview-stage[data-screen="word-card"] {
   padding: 12px clamp(12px, 2vw, 20px);
 }
@@ -14,7 +18,7 @@
 }
 .original-symbol {
   display: inline-block; width: 62px; height: 66px; margin-bottom: 24px;
-  background: url("/references/1.jpg") -434px -137px / 967px 802px no-repeat;
+  background: url("/assets/case-symbol.png") center / contain no-repeat;
 }
 .original-case header p { max-width: 530px; }
 .original-case .case-hint { text-align: center; }
@@ -32,7 +36,7 @@
 .original-submission .primary { min-height: 52px; background: #3e7bd6; }
 .representative-review .original-symbol {
   width: 52px; height: 55px; margin-bottom: 18px;
-  background: url("/references/6.jpg") -520px -76px / 1128px 912px no-repeat;
+  background: url("/assets/representative-symbol.png") center / contain no-repeat;
 }
 .representative-review .inset { padding: clamp(16px, 2.4vw, 25px); }
 .representative-review .contact-grid { grid-template-columns: min(31%, 240px) minmax(0, 1fr); }

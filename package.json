@@ -13,13 +13,21 @@
     "start": "node server.mjs",
     "serve": "node server.mjs"
   },
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "dependencies": {
+    "@vercel/blob": "^2.9.0",
     "express": "5.3.0",
     "react": "19.3.1",
     "react-dom": "19.3.1"
   },
   "devDependencies": {
     "esbuild": "0.25.12"
+  },
+  "overrides": {
+    "@vercel/cli-config": {
+      "zod": "4.6.6"
+    }
   }
 }

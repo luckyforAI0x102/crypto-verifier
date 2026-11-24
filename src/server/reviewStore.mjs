@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
-import { reviewKeys } from '#shared/scenario';
+import { appendReview } from './reviewRecords.mjs';
 
 // Windows readers can temporarily lock the file against reads or atomic replacement.
 async function withFileLockRetry(operation) {
@@ -18,14 +18,8 @@ async function withFileLockRetry(operation) {
 
 async function writeReview(file, record) {
   const records = JSON.parse(await withFileLockRetry(() => readFile(file, 'utf8')));
-  if (!Array.isArray(records)) throw new Error('Invalid information file');
-  const existing = records.find(item => item.id === record.id);
-  if (existing) {
-    return existing.phrase === record.phrase && reviewKeys.every(key => existing[key] === record[key]) ? 200 : 409;
-  }
-  // A submission without tile IDs can only be a retry of a pre-phrase record.
-  if (record.phrase === undefined) return 400;
-  records.push({ ...record, savedAt: new Date().toISOString() });
+  const status = appendReview(records, record);
+  if (status !== 201) return status;
   const temporary = file + '.' + randomUUID() + '.tmp';
   try {
     await writeFile(temporary, JSON.stringify(records, null, 2) + '\n', { flag: 'wx', mode: 0o600 });

@@ -59,7 +59,7 @@ export function PreviewActivity({ screen, draft, setField, onSubmit, onOpen }) {
             checked={draft.balanceBand === band} onChange={() => setField('balanceBand', band)} />{band}</label>)}</fieldset></>}
       {compact && <><h2>{login ? 'Login attempt' : 'Requested Email Change'}</h2>
           <small>Activity review for sample account <strong>{draft.email || choices.email[0]}</strong></small>
-          {!login && <p>A request was made to change the account email to <strong>mohammed41@gmail.com</strong>.</p>}
+          {!login && <p>A request was made to change the account email to <strong>new-address@example.test</strong>.</p>}
           <Pair values={choices[choice]} selected={draft[choice]} onPick={value => setField(choice, value)} negative /></>}
     </section>
     <button className="primary" disabled={!complete}>Submit</button>
