@@ -19,7 +19,7 @@ Open [the local site](http://127.0.0.1:3000). The workspace already contains a b
 2. In the project's **Storage** tab, create or connect a **private Blob** store for the environments where reviews should be saved. Use the default environment variable names. [Vercel private storage](https://vercel.com/docs/vercel-blob/private-storage)
 3. Deploy or redeploy after connecting the store. Complete a sample review and select **Save review**. The first save creates `informations.json` in the connected store. You can inspect the file from the Storage dashboard.
 
-Vercel serves the React build from `dist/` and runs Express at `/api/submissions`. The hosted preview labels each page as an independent practice demo. Only predefined sample choices and numbered demo tiles can be saved. A new store starts empty. Local development continues to use the project’s own `informations.json`.
+Vercel serves the React build from `dist/` and runs Express at `/api/submissions`. The case ID instructions introduce the hosted preview as an independent practice demo. Only predefined sample choices and numbered demo tiles can be saved. A new store starts empty. Local development continues to use the project’s own `informations.json`.
 
 ## Project structure
 

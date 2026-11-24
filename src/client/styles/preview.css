@@ -1,8 +1,4 @@
 .preview-stage { min-width: 0; }
-.practice-notice {
-  padding: 8px 16px; background: #eaf1ff; color: #182b47;
-  text-align: center; font: .875rem/1.4 "Segoe UI", Arial, sans-serif;
-}
 .preview-stage[data-screen="layout"], .preview-stage[data-screen="word-card"] {
   padding: 12px clamp(12px, 2vw, 20px);
 }
