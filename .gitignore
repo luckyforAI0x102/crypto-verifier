@@ -2,3 +2,4 @@ node_modules/
 dist/
 informations.json.*.tmp
 design/
+informations.json
