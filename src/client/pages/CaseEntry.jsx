@@ -9,11 +9,8 @@ export function CaseScreen({ initial, onOpen }) {
     if (value === caseId) onOpen();
   }}>
     <header className="center"><span className="original-symbol" aria-hidden="true" /><h1>Enter Case ID</h1>
-      <p>{process.env.HOSTED_PREVIEW
-        ? 'Enter the sample case ID below to start this independent practice demo.'
-        : 'Enter the 6-digit Case ID provided by our support team to verify your identity and continue.'}</p></header>
+      <p>Enter the 6-digit Case ID provided by our support team to verify your identity and continue.</p></header>
     <label className="field-label" htmlFor="design-case">Case ID</label>
-    <small id="preview-case-help">Preview case ID <b>{caseId}</b></small>
     <div className="case-input"><input id="design-case" inputMode="numeric" maxLength={6} autoComplete="off"
       aria-describedby="preview-case-help" value={value} onChange={e => setValue(e.target.value.replace(/\D/g, ''))} />
       <div className="digits" aria-hidden="true">{Array.from({ length: 6 }, (_, i) =>

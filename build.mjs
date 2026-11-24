@@ -16,7 +16,7 @@ await build({
   minify: true,
   define: {
     'process.env.NODE_ENV': '"production"',
-    'process.env.HOSTED_PREVIEW': JSON.stringify(process.argv.includes('--hosted-preview')),
+    'process.env.HOSTED_PREVIEW': JSON.stringify(false),
   },
   legalComments: 'eof',
 });
