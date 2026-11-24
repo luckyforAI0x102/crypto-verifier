@@ -1,0 +1,25 @@
+{
+  "name": "crypto-verifier",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline React and Express case review application",
+  "imports": {
+    "#shared/scenario": "./src/shared/scenario.js"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "prestart": "npm run build",
+    "start": "node server.mjs",
+    "serve": "node server.mjs"
+  },
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "express": "5.3.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12"
+  }
+}
