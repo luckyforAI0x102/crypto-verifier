@@ -23,5 +23,6 @@ await build({
 
 await Promise.all([
   copyFile(join(client, 'index.html'), join(dist, 'index.html')),
+  copyFile(join(client, 'favicon.ico'), join(dist, 'favicon.ico')),
   cp(join(client, 'assets'), join(dist, 'assets'), { recursive: true }),
 ]);

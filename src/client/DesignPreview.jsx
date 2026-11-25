@@ -31,7 +31,7 @@ export default function DesignPreview() {
     return () => window.removeEventListener('hashchange', changed);
   }, []);
   useEffect(() => {
-    document.title = screens[index].title + ' · Design preview';
+    document.title = screens[index].title;
     stage.current?.focus({ preventScroll: true });
   }, [index]);
 

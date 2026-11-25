@@ -5,7 +5,7 @@ export default function SupportLetter({ email, actionLabel, onContinue }) {
   return <article className="letter" aria-labelledby="letter-title">
     <header className="letter-masthead">
       <img src="/assets/letter-masthead.png" width="230" height="48" alt="crypto.com" />
-      <small>Design preview · Sample support letter</small>
+      <small>Sample support letter</small>
     </header>
     <div className="letter-page">
       <h1 id="letter-title">#{caseId} Review Activity.</h1>
