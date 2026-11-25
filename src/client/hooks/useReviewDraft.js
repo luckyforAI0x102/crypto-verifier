@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { choices } from '#shared/scenario';
+import { reviewKeys, validReviewField } from '#shared/scenario';
 
 export const fields = [
   ['caseId', 'Case ID', 'case'], ['email', 'Sample email', 'email'],
@@ -13,9 +13,9 @@ function loadDraft(storageKey) {
   try {
     const cached = JSON.parse(sessionStorage.getItem(storageKey));
     if (cached && typeof cached.id === 'string') {
-      const draft = { id: cached.id, saved: cached.saved === true };
-      for (const [key, allowed] of Object.entries(choices)) {
-        if (allowed.includes(cached[key])) draft[key] = cached[key];
+      const draft = { id: cached.id, saved: cached.saved === true && validReviewField('caseId', cached.caseId) };
+      for (const key of reviewKeys) {
+        if (validReviewField(key, cached[key])) draft[key] = cached[key];
       }
       return draft;
     }
@@ -28,9 +28,9 @@ export function useReviewDraft(storageKey) {
   useEffect(() => {
     try { sessionStorage.setItem(storageKey, JSON.stringify(draft)); } catch { /* Keep the current tab usable. */ }
   }, [draft, storageKey]);
-  function setField(key, value) {
-    if (!choices[key]?.includes(value)) return;
-    setDraft(old => old[key] === value ? old : { ...old, [key]: value, id: crypto.randomUUID(), saved: false });
+  function setField(key, value, { newRevision = false } = {}) {
+    if (!validReviewField(key, value)) return;
+    setDraft(old => old[key] === value && !newRevision ? old : { ...old, [key]: value, id: crypto.randomUUID(), saved: false });
   }
   function saved(record) {
     setDraft(old => old.id === record.id ? { ...old, saved: true } : old);

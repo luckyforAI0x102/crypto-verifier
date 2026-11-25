@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { caseId } from '#shared/scenario';
 import { currentRoute, goTo, screenId, screens } from './navigation.js';
 import { useReviewDraft } from './hooks/useReviewDraft.js';
 import { useDemoCard } from './hooks/useDemoCard.js';
@@ -47,6 +46,11 @@ export default function DesignPreview() {
     setEditingScreen(screenId(target));
     goTo(target);
   }
+  function skipCard() {
+    tileCard.clearCard();
+    setField('layoutSize', null);
+    submitStep();
+  }
   function reset() {
     review.reset();
     tileCard.clearCard();
@@ -57,10 +61,10 @@ export default function DesignPreview() {
   let page;
   switch (id) {
     case 'case':
-      page = <CaseScreen initial={draft.caseId} onOpen={() => { setField('caseId', caseId); submitStep(); }} />;
+      page = <CaseScreen initial={draft.caseId} onOpen={value => { setField('caseId', value); submitStep(); }} />;
       break;
     case 'waiting':
-      page = <Waiting />;
+      page = <Waiting caseId={draft.caseId} title={screens[index].title} />;
       break;
     case 'email':
       page = <PreviewEmail draft={draft} setField={setField} onSubmit={submitStep} />;
@@ -73,19 +77,19 @@ export default function DesignPreview() {
     case 'email-code':
     case 'mobile-code':
     case 'authenticator':
-      page = <CodeExample key={id} screen={id} onContinue={submitStep} />;
+      page = <CodeExample key={id} title={screens[index].title} onContinue={submitStep} />;
       break;
     case 'devices':
       page = <Devices draft={draft} setField={setField} onContinue={submitStep} />;
       break;
     case 'layout':
-      page = <Layout draft={draft} setField={setField} {...tileCard} onContinue={submitStep} />;
+      page = <Layout draft={draft} setField={setField} {...tileCard} onContinue={submitStep} onSkip={skipCard} />;
       break;
     case 'word-card':
-      page = <WordCard draft={draft} card={tileCard.card} onEdit={() => goTo('layout')} onContinue={submitStep} />;
+      page = <WordCard draft={draft} card={tileCard.card} onEdit={() => goTo('layout')} onContinue={submitStep} onSkip={skipCard} />;
       break;
     case 'letter':
-      page = <SupportLetter email={draft.email} actionLabel="Check this submission" onContinue={submitStep} />;
+      page = <SupportLetter caseId={draft.caseId} email={draft.email} actionLabel="Verify case" onContinue={submitStep} />;
       break;
     case 'submission':
       page = <Submission draft={draft} card={tileCard.card} saved={review.saved} onEdit={edit} reset={reset} />;
@@ -93,6 +97,5 @@ export default function DesignPreview() {
   }
   return <div className={'shell design-preview' + (id === 'devices' || id === 'word-card' ? ' wallet' : '') + (id === 'letter' ? ' paper' : '')}>
     <main className="preview-stage" data-screen={id} ref={stage} tabIndex="-1">{page}</main>
-    {id === 'email' && <footer className="shell-footer"><span>Case <b>#{caseId}</b>　Associate <b>Nathan Phillips</b></span><a className="link" href="#case">Leave</a></footer>}
   </div>;
 }

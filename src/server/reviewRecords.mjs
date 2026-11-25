@@ -6,8 +6,7 @@ export function appendReview(records, record) {
   if (existing) {
     return existing.phrase === record.phrase && reviewKeys.every(key => existing[key] === record[key]) ? 200 : 409;
   }
-  // A submission without tile IDs can only be a retry of a pre-phrase record.
-  if (record.phrase === undefined) return 400;
+  if (record.layoutSize !== null && record.phrase === undefined) return 400;
   records.push({ ...record, savedAt: new Date().toISOString() });
   return 201;
 }

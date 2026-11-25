@@ -9,9 +9,9 @@ export const screens = [
   { id: 'mobile-code', title: 'Verify Mobile Number' },
   { id: 'authenticator', title: 'Two-Factor Authentication' },
   { id: 'devices', title: 'Own Your Crypto Adventure' },
-  { id: 'layout', title: 'Build your practice phrase card' },
-  { id: 'word-card', title: 'Your practice phrase card' },
-  { id: 'letter', title: '#980250 Review Activity.' },
+  { id: 'layout', title: 'Build a demo phrase card' },
+  { id: 'word-card', title: 'Your demo phrase card' },
+  { id: 'letter', title: 'Review Activity.' },
   { id: 'submission', title: 'Check this submission' },
 ];
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { bands, caseId, choices, contactActions } from '#shared/scenario';
+import { bands, choices, contactActions } from '#shared/scenario';
 import { Button, Pair } from '../components/controls.jsx';
 import { Mark } from '../components/Brand.jsx';
 
@@ -21,13 +21,13 @@ export default function Review({ screen, draft, setField, go }) {
     </nav>
     <div className="inset" aria-live="polite">
       {tab === 0 && <><h2>Requested Email Change</h2>
-        <p>A request was made to change the sample account email to <strong>new-address@example.test</strong>.</p>
+        <p>Would you approve this email change?</p>
         <Pair values={choices.emailChange} selected={draft.emailChange} onPick={v => setField('emailChange', v)} negative /></>}
       {tab === 1 && <><h2>Recent Login Attempt</h2>
         <p>The sample account shows a new sign-in from a desktop browser. Would you recognize this activity?</p>
         <Pair values={choices.loginAttempt} selected={draft.loginAttempt} onPick={v => setField('loginAttempt', v)} negative /></>}
       {tab === 2 && <><h2>Estimated Last Account Balance</h2>
-        <p>The sample statement shows <strong>$4,250</strong>. Select its balance range.</p>
+        <p>Choose a balance range.</p>
         <fieldset className="radios"><legend className="sr">Sample balance range</legend>{bands.map(band =>
           <label key={band}><input type="radio" name="balance" checked={draft.balanceBand === band}
             onChange={() => setField('balanceBand', band)} />{band}</label>)}</fieldset></>}
@@ -36,7 +36,7 @@ export default function Review({ screen, draft, setField, go }) {
           <b>Unknown caller</b><span>Caller ID unverified</span><em>End call</em></div></div>
         <div><p>A caller claims to be following up on your case. Their name and ticket number match the sample record.</p>
           <div className="facts"><div><small>ASSOCIATE</small><strong>Casefile Desk</strong></div>
-            <div><small>TICKET</small><strong>{caseId}</strong></div></div>
+            <div><small>TICKET</small><strong>{draft.caseId || '—'}</strong></div></div>
           <p className="callout">Anyone can repeat a ticket number. Use the app’s help center to check who contacted you.</p></div>
         </div><Pair values={contactActions} selected={draft.contactReview} onPick={v => setField('contactReview', v)} negative /></>}
     </div>

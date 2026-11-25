@@ -1,5 +1,5 @@
 import express from 'express';
-import { choices, demoTiles, reviewKeys, validTileIds } from '#shared/scenario';
+import { demoTiles, isTestEmail, reviewKeys, validReviewField, validTileIds } from '#shared/scenario';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -8,7 +8,9 @@ function parseSubmission(body) {
   const { tileIds, ...record } = body;
   if (Object.keys(record).length !== reviewKeys.length + 1
     || typeof record.id !== 'string' || !uuid.test(record.id)
-    || !reviewKeys.every(key => choices[key].includes(record[key]))) return null;
+    || !reviewKeys.every(key => key === 'email'
+      ? record.email === null || isTestEmail(record.email)
+      : validReviewField(key, record[key]))) return null;
   if (tileIds !== undefined) {
     if (!validTileIds(tileIds, record.layoutSize)) return null;
     record.phrase = tileIds.map(id => demoTiles[id - 1]).join(' ');
